@@ -11,7 +11,7 @@ class Kategori extends Model
     protected $table = 'kategoris';
     protected $fillable = ['nama_kategori'];
 
-    public function buku()
+    public function berita()
     {
         return $this->hasMany('App\Models\Berita');
     }

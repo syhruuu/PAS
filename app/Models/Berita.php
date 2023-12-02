@@ -11,8 +11,8 @@ class Berita extends Model
     protected $table = 'beritas';
     protected $fillable = ['user_id','kategori_id','judul','isi','gambar'];
 
-    public function buku()
+    public function kategori()
     {
-        return $this->hasMany('App\Models\Berita');
+        return $this->belongsTo('App\Models\Kategori');
     }
 }

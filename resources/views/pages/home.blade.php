@@ -63,6 +63,7 @@
     </div>
     <div class="container mt-3">
         <div class="row">
+
             <div class="col-lg-4 col-md-6">
                 <div class="card ">
                     <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
@@ -82,6 +83,7 @@
                     </div>
                 </div>
             </div>
+           
         </div>
     </div>
 @endsection
