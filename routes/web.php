@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BeritaController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -17,7 +18,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('pages.home');
 });
+Route::get('/detail', function () {
+    return view('pages.detail');
+});
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/berita', [BeritaController::class, 'index'])->name('berita');

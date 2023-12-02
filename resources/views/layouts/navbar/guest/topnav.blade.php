@@ -1,5 +1,5 @@
 
-<nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+<nav class="navbar navbar-expand-md shadow-sm">
     <div class="container">
         <a class="navbar-brand" href="{{ url('/') }}">
             {{ config('app.name', 'Laravel') }}
@@ -12,7 +12,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
             <!-- Right Side Of Navbar -->
-            <ul class="navbar-nav ms-auto align-items-center">
+            <ul class="navbar-nav ms-auto align-items-md-center">
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="#">Home</a>
                 </li>
@@ -36,7 +36,7 @@
                         </li>
                     @endif
                 @else
-                    <li class="nav-item dropdown">
+                    <li class="nav-item dropdown ms-lg-5 ms-md-3">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                             data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             <img src="{{asset('img/profile/Pasfoto.png')}}" class="rounded-circle" height="32" width="32" alt="...">
