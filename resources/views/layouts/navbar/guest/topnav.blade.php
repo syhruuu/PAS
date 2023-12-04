@@ -1,4 +1,3 @@
-
 <nav class="navbar navbar-expand-md shadow-sm">
     <div class="container">
         <a class="navbar-brand" href="{{ url('/') }}">
@@ -32,14 +31,16 @@
 
                     @if (Route::has('register'))
                         <li class="nav-item ms-md-2">
-                            <a class="btn btn btn-outline-secondary w-md-0 w-100 mt-md-0 mt-2" href="{{ route('register') }}">{{ __('Register') }}</a>
+                            <a class="btn btn btn-outline-secondary w-md-0 w-100 mt-md-0 mt-2"
+                                href="{{ route('register') }}">{{ __('Register') }}</a>
                         </li>
                     @endif
                 @else
                     <li class="nav-item dropdown ms-lg-5 ms-md-3">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                             data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            <img src="{{asset('img/profile/Pasfoto.png')}}" class="rounded-circle" height="32" width="32" alt="...">
+                            <img src="{{ asset('img/profile/Pasfoto.png') }}" class="rounded-circle" height="32"
+                                width="32" alt="...">
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
@@ -55,6 +56,7 @@
                         </div>
                     </li>
                 @endguest
+
             </ul>
         </div>
     </div>
