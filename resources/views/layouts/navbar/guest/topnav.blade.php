@@ -39,8 +39,7 @@
                     <li class="nav-item dropdown ms-lg-5 ms-md-3">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                             data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            <img src="{{ asset('img/profile/Pasfoto.png') }}" class="rounded-circle" height="32"
-                                width="32" alt="...">
+                            {{ auth()->user()->name}}
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">

@@ -63,27 +63,24 @@
     </div>
     <div class="container mt-3">
         <div class="row">
-
-            <div class="col-lg-4 col-md-6">
-                <div class="card ">
-                    <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
-                        xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
-                        preserveAspectRatio="xMidYMid slice" focusable="false">
-                        <title>Placeholder</title>
-                        <rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef"
-                            dy=".3em">Thumbnail</text>
-                    </svg>
-                    <div class="card-body">
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                            additional content. This content is a little bit longer.</p>
-                        <div class="d-flex justify-content-between align-items-center">
+            @foreach ($allBerita as $item)
+                <div class="col-lg-4 col-md-6">
+                    <div class="card ">
+                        <img src="{{ asset('img/gambar/' . $item->gambar) }}" class="bd-placeholder-img card-img-top"
+                            alt="">
+                        <div class="card-body">
+                            <div class="card-title h5 fw-bold">{{ Str::limit($item->judul, 25, '...') }}</div>
+                            <p class="card-text">{!! Str::limit($item->isi, 50, '...') !!}</p>
+                            <div class="d-flex justify-content-between align-items-center">
                                 <button type="button" class="btn btn-md btn-outline-secondary">View</button>
-                            <small class="text-body-secondary">9 mins</small>
+                                <small class="text-body-secondary">{{ $item->user->name }} |
+                                    <span class="fw-bold">{{ $item->kategori->nama_kategori }}</span></small>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-           
+            @endforeach
+
         </div>
     </div>
 @endsection

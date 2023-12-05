@@ -6,6 +6,7 @@ use App\Models\Berita;
 use App\Models\Kategori;
 use App\Models\User;
 use Illuminate\Http\Request;
+use File;
 
 class BeritaController extends Controller
 {
@@ -26,7 +27,7 @@ class BeritaController extends Controller
     {
 
         $request->validate([
-            'user_id'       => 'required',
+            'user_id'       => '',
             'kategori_id'   => 'required',
             'judul'         => 'required',
             'gambar'        => 'image|mimes:jpg,png,jpeg',
@@ -40,7 +41,7 @@ class BeritaController extends Controller
 
         $berita = new Berita;
 
-        $berita->user_id     = $request->user_id;
+        $berita->user_id     = auth()->user()->id;
         $berita->kategori_id = $request->kategori_id;
         $berita->judul       = $request->judul;
         $berita->gambar      = $gambarName;

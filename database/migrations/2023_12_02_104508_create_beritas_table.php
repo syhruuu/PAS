@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->unsignedBigInteger('kategori_id');
             $table->foreign('kategori_id')->references('id')->on('kategoris');
-            $table->string('judul',50);
+            $table->string('judul');
             $table->text('isi');
             $table->string('gambar');
             $table->timestamps();

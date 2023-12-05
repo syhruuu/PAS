@@ -1,56 +1,48 @@
 @extends('layouts.app')
-
+@section('editor')
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+@endsection
 @section('content')
     <div class="container my-4">
         <div class="card">
             <div class="card-body">
-                <form>
+                <form action="{{route('berita.perform')}}" method="POST" enctype="multipart/form-data">
+                    @csrf
                     <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">Email address</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                        <label for="namaJudul" class="form-label">Judul Berita</label>
+                        <input type="text" name="judul" class="form-control" id="namaJudul">
                     </div>
                     <div class="mb-3">
-                        <label for="exampleInputPassword1" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1">
-                    </div>
-                    <div class="mb-3">
-                        <label for="exampleSelect" class="form-label">Select menu</label>
-                        <select class="form-select" id="exampleSelect">
-                            <option selected="">Open this select menu</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                        <label for="kategoriSelect" class="form-label">Kategori</label>
+                        <select class="form-select" name="kategori_id" id="kategoriSelect">
+                            <option selected="" value="">pilih kategori berita</option>
+                            @foreach ($kategori as $itemk)
+                            <option value="{{$itemk->id}}">{{$itemk->nama_kategori}}</option>
+                            @endforeach
                         </select>
                     </div>
-                    <div class="mb-3 form-check">
-                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                        <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                    </div>
-                    <fieldset class="mb-3">
-                        <legend>Radios buttons</legend>
-                        <div class="form-check">
-                            <input type="radio" name="radios" class="form-check-input" id="exampleRadio1">
-                            <label class="form-check-label" for="exampleRadio1">Default radio</label>
-                        </div>
-                        <div class="mb-3 form-check">
-                            <input type="radio" name="radios" class="form-check-input" id="exampleRadio2">
-                            <label class="form-check-label" for="exampleRadio2">Another radio</label>
-                        </div>
-                    </fieldset>
                     <div class="mb-3">
-                        <label class="form-label" for="customFile">Upload</label>
-                        <input type="file" class="form-control" id="customFile">
-                    </div>
-                    <div class="mb-3 form-check form-switch">
-                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked"
-                            checked="">
-                        <label class="form-check-label" for="flexSwitchCheckChecked">Checked switch checkbox input</label>
+                        <div class="card shadow-none border text-center p-3">
+                            <label class="form-label border-dashed p-3 cursor-pointer" id="label"
+                                style="border-radius:10px;" for="imageFile">Masukkan Gambar
+                                <img class="img-preview img-fluid mb-2">
+                                <img src="{{ asset('img/imageplus.png') }}" id="plusimg" class="img-fluid p-md-3"
+                                    alt="">
+                                <input accept="image/*" type="file" name="gambar" class="form-control mt-3"
+                                    id="imageFile" onchange="previewImage()">
+                            </label>
+                            @error('gambar')
+                                <p class='text-danger mb-0 text-xs pt-1'> {{ $message }} </p>
+                            @enderror
+                        </div>
                     </div>
                     <div class="mb-3">
-                        <label for="customRange3" class="form-label">Example range</label>
-                        <input type="range" class="form-range" min="0" max="5" step="0.5"
-                            id="customRange3">
+                        <label for="isi" class="form-label">Isi</label>
+                        <div id="isi" style="height:350px;"></div>
+                        <textarea class="form-control" name="isi" id="content-textarea" hidden style="display: none;"></textarea>
+                        @error('isi')
+                            <p class='text-danger mb-0 text-xs pt-1'> {{ $message }} </p>
+                        @enderror
                     </div>
                     <a href="/berita" class="btn btn-secondary">Cancel</a>
                     <button type="submit" class="btn btn-primary">Submit</button>
@@ -58,4 +50,90 @@
             </div>
         </div>
     </div>
+@endsection
+@section('scripts')
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    <script>
+        function previewImage() {
+            const imageFile = document.querySelector('#imageFile');
+            const imgPreview = document.querySelector('.img-preview');
+            const label = document.querySelector('#label');
+            const img = document.querySelector('#plusimg');
+
+            img.style.display = 'none';
+            label.style.border = 0;
+            imgPreview.style.display = 'block';
+
+            const blob = URL.createObjectURL(imageFile.files[0]);
+            imgPreview.src = blob;
+        }
+        var toolbarOptions = [
+            [{
+                'font': []
+            }],
+            [{
+                'header': [1, 2, 3, 4, 5, 6, false]
+            }],
+            ['bold', 'italic', 'underline', 'strike'], // toggled buttons
+            ['blockquote', 'code-block'],
+
+            [{
+                'list': 'ordered'
+            }, {
+                'list': 'bullet'
+            }],
+            [{
+                'indent': '-1'
+            }, {
+                'indent': '+1'
+            }],
+
+            [{
+                'color': []
+            }, {
+                'background': []
+            }],
+            [{
+                'align': []
+            }],
+
+            ['clean']
+        ];
+        var quill = new Quill('#isi', {
+            modules: {
+                toolbar: toolbarOptions
+            },
+            theme: 'snow'
+        });
+
+        quill.on('text-change', function(delta, source) {
+            updateHtmlOutput()
+        })
+
+        // When the convert button is clicked, update output
+        $('#btn-convert').on('click', () => {
+            updateHtmlOutput()
+        })
+
+        // Return the HTML content of the editor
+        function getQuillHtml() {
+            return quill.root.innerHTML;
+        }
+
+        // Highlight code output
+        function updateHighlight() {
+            hljs.highlightBlock(document.querySelector('#content-textarea'))
+        }
+
+
+        function updateHtmlOutput() {
+            let html = getQuillHtml();
+            console.log(html);
+            document.getElementById('content-textarea').innerText = html;
+            updateHighlight();
+        }
+
+
+        updateHtmlOutput()
+    </script>
 @endsection
