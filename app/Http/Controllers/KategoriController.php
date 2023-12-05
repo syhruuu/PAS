@@ -22,7 +22,7 @@ class KategoriController extends Controller
             'nama_kategori.unique' => 'The Kategori nama has already been taken.'
         ]);
         Kategori::create($attributes);
-        return redirect()->to('/kategori')->with('succes', 'added data successfully');
+        return redirect()->to('/kategori')->with('success', 'added data successfully');
     }
 
     public function edit($id)
@@ -49,6 +49,6 @@ class KategoriController extends Controller
     public function destroy($id)
     {
         Kategori::where('id', $id)->delete();
-        return redirect()->to('/kategori')->with('succes', 'The data has been successfully deleted');
+        return redirect()->to('/kategori')->with('success', 'The data has been successfully deleted');
     }
 }

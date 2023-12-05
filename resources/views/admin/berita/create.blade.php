@@ -4,51 +4,69 @@
 @endsection
 @section('content')
     <div class="container my-4">
-        <div class="card">
-            <div class="card-body">
-                <form action="{{route('berita.perform')}}" method="POST" enctype="multipart/form-data">
-                    @csrf
-                    <div class="mb-3">
-                        <label for="namaJudul" class="form-label">Judul Berita</label>
-                        <input type="text" name="judul" class="form-control" id="namaJudul">
-                    </div>
-                    <div class="mb-3">
-                        <label for="kategoriSelect" class="form-label">Kategori</label>
-                        <select class="form-select" name="kategori_id" id="kategoriSelect">
-                            <option selected="" value="">pilih kategori berita</option>
-                            @foreach ($kategori as $itemk)
-                            <option value="{{$itemk->id}}">{{$itemk->nama_kategori}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <div class="card shadow-none border text-center p-3">
-                            <label class="form-label border-dashed p-3 cursor-pointer" id="label"
-                                style="border-radius:10px;" for="imageFile">Masukkan Gambar
-                                <img class="img-preview img-fluid mb-2">
-                                <img src="{{ asset('img/imageplus.png') }}" id="plusimg" class="img-fluid p-md-3"
-                                    alt="">
-                                <input accept="image/*" type="file" name="gambar" class="form-control mt-3"
-                                    id="imageFile" onchange="previewImage()">
-                            </label>
-                            @error('gambar')
-                                <p class='text-danger mb-0 text-xs pt-1'> {{ $message }} </p>
-                            @enderror
+        <form action="{{ route('berita.perform') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <div class="row">
+                <div class="col-md-9">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <label for="namaJudul" class="form-label">Judul Berita</label>
+                                <input type="text" name="judul" class="form-control" id="namaJudul">
+                                @error('judul')
+                                    <p class='text-danger mb-0 text-xs pt-1'> {{ $message }} </p>
+                                @enderror
+                            </div>
+                            <div class="mb-3">
+                                <label for="isi" class="form-label">Isi</label>
+                                <div id="isi" style="height:350px;"></div>
+                                <textarea class="form-control" name="isi" id="content-textarea" hidden style="display: none;"></textarea>
+                                @error('isi')
+                                    <p class='text-danger mb-0 text-xs pt-1'> {{ $message }} </p>
+                                @enderror
+                            </div>
                         </div>
                     </div>
-                    <div class="mb-3">
-                        <label for="isi" class="form-label">Isi</label>
-                        <div id="isi" style="height:350px;"></div>
-                        <textarea class="form-control" name="isi" id="content-textarea" hidden style="display: none;"></textarea>
-                        @error('isi')
-                            <p class='text-danger mb-0 text-xs pt-1'> {{ $message }} </p>
-                        @enderror
+                </div>
+                <div class="col-md-3">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <div class="card shadow-none border text-center ">
+                                    <label class="form-label border-dashed cursor-pointer" id="label"
+                                        style="border-radius:10px;" for="imageFile">Masukkan Gambar
+                                        <img class="img-preview img-fluid mb-2">
+                                        <img src="{{ asset('img/imageplus.png') }}" id="plusimg" class="img-fluid p-md-3"
+                                            alt="">
+                                        <input accept="image/*" type="file" name="gambar" class="form-control mt-3"
+                                            id="imageFile" onchange="previewImage()">
+                                    </label>
+                                    @error('gambar')
+                                        <p class='text-danger mb-0 text-xs pt-1'> {{ $message }} </p>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="kategoriSelect" class="form-label">Kategori</label>
+                                <select class="form-select" name="kategori_id" id="kategoriSelect">
+                                    <option selected="" value="">pilih kategori berita</option>
+                                    @foreach ($kategori as $itemk)
+                                        <option value="{{ $itemk->id }}">{{ $itemk->nama_kategori }}</option>
+                                    @endforeach
+                                </select>
+                                @error('kategori_id')
+                                    <p class='text-danger mb-0 text-xs pt-1'> {{ $message }} </p>
+                                @enderror
+                            </div>
+                        </div>
                     </div>
-                    <a href="/berita" class="btn btn-secondary">Cancel</a>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
+                    <div class="text-end">
+                        <a href="/berita" class="btn btn-secondary">Cancel</a>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
             </div>
-        </div>
+        </form>
     </div>
 @endsection
 @section('scripts')

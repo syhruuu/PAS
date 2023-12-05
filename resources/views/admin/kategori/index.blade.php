@@ -2,6 +2,9 @@
 
 @section('content')
     <div class="container my-4">
+        <div id="alert">
+            @include('components.alert')
+        </div>
         <div class="mb-4">
             <div class="card">
                 <div class="card-header">

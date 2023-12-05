@@ -4,8 +4,9 @@
     <div id="app">
         @include('components.theme')
         @auth
-            @include('layouts.navbar.guest.topnav')
-            <main>
+            <main class="d-flex flex-nowrap">
+                @include('layouts.navbar.auth.sidenav')
+                @include('layouts.navbar.auth.topnav')
                 @yield('content')
             </main>
         @endauth

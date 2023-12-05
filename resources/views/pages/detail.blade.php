@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container py-4">
+    <div class="container p-4">
         <div class="row g-5">
             <div class="col-md-8">
                 <article class="blog-post">

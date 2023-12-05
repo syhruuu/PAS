@@ -18,7 +18,7 @@
                         </div>
                         <div class="text-end">
                             <a href="/kategori" class="btn btn-secondary">Cancel</a>
-                            <button type="submit" class="btn btn-primary">Edit</button>
+                            <button type="submit" class="btn btn-primary">Update</button>
                         </div>
                     </form>
                 </div>

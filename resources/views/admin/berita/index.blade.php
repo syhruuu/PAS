@@ -1,7 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container my-4">
+<div class="container my-4">
+        <div id="alert">
+            @include('components.alert')
+        </div>
         <div class="card">
             <div class="card-header">
                 <div class="d-flex justify-content-between">
@@ -14,7 +17,7 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th scope="col">#</th>
+                                <th scope="col">No.</th>
                                 <th scope="col">Judul</th>
                                 <th scope="col">Isi</th>
                                 <th scope="col">Kategori</th>
@@ -31,13 +34,20 @@
                                     <td>{{ $item->kategori->nama_kategori }}</td>
                                     <td>{{ $item->user->name }}</td>
                                     <td>
-                                        <a href="asd" class="btn btn-success btn-sm">edit</a>
-                                        <form class="d-inline" onsubmit="return confirm('sure to delete this data')"
-                                            action="{{ route('berita.delete', $item->id) }}" method="post">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button class="btn btn-sm btn-danger mb-0">delete</button>
-                                        </form>
+                                        <div class="d-flex">
+                                            <a href="{{-- route('berita.show',$item->id) --}}" class="btn btn-warning btn-sm"><i
+                                                    class="bi bi-eye"></i>Preview</a>
+                                            <a href="{{ route('berita.edit', $item->id) }}"
+                                                class="btn btn-success btn-sm ms-1"><i
+                                                    class="bi bi-pencil-square"></i>Edit</a>
+                                            <form onsubmit="return confirm('sure to delete this data')"
+                                                action="{{ route('berita.delete', $item->id) }}" method="post">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button class="btn btn-sm btn-danger mb-0 ms-1">
+                                                    <i class="bi bi-trash"></i>delete</button>
+                                            </form>
+                                        </div>
                                     </td>
                                 </tr>
                             @endforeach

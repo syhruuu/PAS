@@ -18,29 +18,28 @@ use App\Http\Controllers\PagesController;
 |
 */
 
-Route::controller(PagesController::class)->group(function() {
-    Route::get('/','index')->name('home');
-    Route::get('/{id}','detail')->name('detail');
-});
-Route::get('/detail', function () {
-    return view('pages.detail');
-});
 
 Auth::routes();
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
-Route::controller(BeritaController::class)->group(function() {
-    Route::get('/berita','index');
-    Route::get('/berita-create','create');
-    Route::post('/berita-create','store')->name('berita.perform');
-    Route::get('/berita-edit/{id}','edit');
-    Route::put('/berita-edit/{id}','update');
-    Route::delete('berita/{id}', 'destroy')->name('berita.delete');
+Route::get('/dashboard', [HomeController::class, 'index'])->name('home');
+Route::middleware(['auth'])->group(function () {
+    Route::controller(BeritaController::class)->group(function () {
+        Route::get('/berita', 'index');
+        Route::get('/berita-create', 'create');
+        Route::post('/berita-create', 'store')->name('berita.perform');
+        Route::get('/berita-edit/{id}', 'edit')->name('berita.edit');
+        Route::put('/berita-edit/{id}', 'update')->name('berita.update');
+        Route::delete('berita/{id}', 'destroy')->name('berita.delete');
+    });
+    Route::controller(KategoriController::class)->group(function () {
+        Route::get('/kategori', 'index');
+        Route::post('/kategori', 'store')->name('kategori.perform');
+        Route::get('/kategori-edit/{id}', 'edit')->name('kategori.edit');
+        Route::put('/kategori-edit/{id}', 'update')->name('kategori.update');
+        Route::delete('kategori/{id}', 'destroy')->name('kategori.delete');
+    });
 });
-Route::controller(KategoriController::class)->group(function() {
-    Route::get('/kategori','index');
-    Route::post('/kategori','store')->name('kategori.perform');
-    Route::get('/kategori-edit/{id}','edit')->name('kategori.edit');
-    Route::put('/kategori-edit/{id}','update')->name('kategori.update');
-    Route::delete('kategori/{id}', 'destroy')->name('kategori.delete');
+Route::controller(PagesController::class)->group(function () {
+    Route::get('/', 'index')->name('home');
+    Route::get('/{id}', 'detail')->name('detail');
 });
