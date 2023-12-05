@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container my-4">
-        <div class="mb-5">
+        <div class="mb-4">
             <div class="card">
                 <div class="card-header">
                     <h5 class="fw-bold my-auto">Tambah Kategori</h5>
@@ -41,8 +41,13 @@
                                 <th scope="row">1</th>
                                 <td>{{$item->nama_kategori}}</td>
                                 <td>
-                                    <a href="" class="btn btn-sm btn-success">edit</a>
-                                    <a href="" class="btn btn-sm btn-danger">delete</a>
+                                    <a href="{{route('kategori.edit',$item->id)}}" class="btn btn-sm btn-success">edit</a>
+                                    <form class="d-inline" onsubmit="return confirm('sure to delete this data')"
+                                            action="{{ route('kategori.delete', $item->id) }}" method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button class="btn btn-sm btn-danger mb-0">delete</button>
+                                        </form>
                                 </td>
                             </tr>
                             @endforeach

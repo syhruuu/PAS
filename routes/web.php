@@ -18,7 +18,10 @@ use App\Http\Controllers\PagesController;
 |
 */
 
-Route::get('/', [PagesController::class, 'index'])->name('home');
+Route::controller(PagesController::class)->group(function() {
+    Route::get('/','index')->name('home');
+    Route::get('/{id}','detail')->name('detail');
+});
 Route::get('/detail', function () {
     return view('pages.detail');
 });
@@ -37,7 +40,7 @@ Route::controller(BeritaController::class)->group(function() {
 Route::controller(KategoriController::class)->group(function() {
     Route::get('/kategori','index');
     Route::post('/kategori','store')->name('kategori.perform');
-    Route::get('/kategori-edit/{id}','edit');
-    Route::put('/kategori-edit/{id}','update');
-    Route::delete('kategori/{id}', 'destroy');
+    Route::get('/kategori-edit/{id}','edit')->name('kategori.edit');
+    Route::put('/kategori-edit/{id}','update')->name('kategori.update');
+    Route::delete('kategori/{id}', 'destroy')->name('kategori.delete');
 });

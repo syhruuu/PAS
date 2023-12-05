@@ -26,12 +26,12 @@
                             @foreach ($allBerita as $item)
                                 <tr>
                                     <th scope="row">1</th>
-                                    <td>{{ Str::limit($item->judul, 10, '...') }}</td>
-                                    <td>{!! Str::limit($item->isi, 40, '...') !!}</td>
+                                    <td>{{ Str::limit($item->judul, 10) }}</td>
+                                    <td>{!! Str::words($item->isi, 20) !!}</td>
                                     <td>{{ $item->kategori->nama_kategori }}</td>
                                     <td>{{ $item->user->name }}</td>
                                     <td>
-                                        <a href="" class="btn btn-success btn-sm">edit</a>
+                                        <a href="asd" class="btn btn-success btn-sm">edit</a>
                                         <form class="d-inline" onsubmit="return confirm('sure to delete this data')"
                                             action="{{ route('berita.delete', $item->id) }}" method="post">
                                             @csrf

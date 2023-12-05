@@ -70,9 +70,10 @@
                             alt="">
                         <div class="card-body">
                             <div class="card-title h5 fw-bold">{{ Str::limit($item->judul, 25, '...') }}</div>
-                            <p class="card-text">{!! Str::limit($item->isi, 50, '...') !!}</p>
+                            <p class="card-text">{!! Str::words($item->isi, 30, '...') !!}</p>
                             <div class="d-flex justify-content-between align-items-center">
-                                <button type="button" class="btn btn-md btn-outline-secondary">View</button>
+                                <a href="{{ route('detail', $item->id) }}"
+                                    class="btn btn-md btn-outline-secondary">View</a>
                                 <small class="text-body-secondary">{{ $item->user->name }} |
                                     <span class="fw-bold">{{ $item->kategori->nama_kategori }}</span></small>
                             </div>
