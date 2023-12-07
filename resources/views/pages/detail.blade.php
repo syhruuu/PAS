@@ -3,10 +3,10 @@
 @section('content')
     <div class="container p-4">
         <div class="row g-5">
-            <div class="col-md-8">
+            <div class="col-md-12">
                 <article class="blog-post">
                     <h2 class="display-5 link-body-emphasis mb-1">{{ $berita->judul }}</h2>
-                    <p class="blog-post-meta">{{ $berita->created_at }} by <a href="#">{{ $berita->user->name }}</a></p>
+                    <p class="blog-post-meta">{{ $berita->created_at }} by <a href="#">Alamsyah</a></p>
                     <img src="{{ asset('img/gambar/' . $berita->gambar) }}" class="mb-3 bd-placeholder-img card-img-top"
                             alt="">
                     {!! $berita->isi !!}
@@ -19,7 +19,7 @@
 
             </div>
 
-            <div class="col-md-4">
+            <!-- <div class="col-md-4">
                 <div class="position-sticky mt-3" style="top: 1rem;">
                     <div class="p-4 mb-3 bg-body-tertiary rounded">
                         <h4 class="fst-italic">About</h4>
@@ -103,7 +103,7 @@
                         </ol>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 @endsection

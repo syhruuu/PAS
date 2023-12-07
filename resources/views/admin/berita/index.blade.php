@@ -9,7 +9,7 @@
             <div class="card-header">
                 <div class="d-flex justify-content-between">
                     <h5 class="fw-bold my-auto">Manajemen Berita</h5>
-                    <a href="/berita-create" class="btn btn-secondary">Tambah Berita</a>
+                    <a href="/berita-create" class="btn btn-primary">Tambah Berita</a>
                 </div>
             </div>
             <div class="card-body">
@@ -17,12 +17,12 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th scope="col">No.</th>
-                                <th scope="col">Judul</th>
-                                <th scope="col">Isi</th>
+                                <th scope="col">Id</th>
+                                <th scope="col">Judul Berita</th>
+                                <th scope="col">Isi Berita</th>
                                 <th scope="col">Kategori</th>
-                                <th scope="col">Penulis</th>
-                                <th scope="col">Action</th>
+                                <th scope="col">Sumber</th>
+                                <th scope="col">#</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -35,17 +35,14 @@
                                     <td>{{ $item->user->name }}</td>
                                     <td>
                                         <div class="d-flex">
-                                            <a href="{{-- route('berita.show',$item->id) --}}" class="btn btn-warning btn-sm"><i
-                                                    class="bi bi-eye"></i>Preview</a>
+                                            <a href="{{-- route('berita.show',$item->id) --}}" class="btn btn-warning btn-sm">Lihat Detail</a>
                                             <a href="{{ route('berita.edit', $item->id) }}"
-                                                class="btn btn-success btn-sm ms-1"><i
-                                                    class="bi bi-pencil-square"></i>Edit</a>
-                                            <form onsubmit="return confirm('sure to delete this data')"
+                                                class="btn btn-success btn-sm ms-1">Edit</a>
+                                            <form onsubmit="return confirm('Anda yakin ingin hapus Berita?')"
                                                 action="{{ route('berita.delete', $item->id) }}" method="post">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button class="btn btn-sm btn-danger mb-0 ms-1">
-                                                    <i class="bi bi-trash"></i>delete</button>
+                                                <button class="btn btn-sm btn-danger mb-0 ms-1">Hapus</button>
                                             </form>
                                         </div>
                                     </td>

@@ -61,8 +61,8 @@
                         </div>
                     </div>
                     <div class="text-end">
-                        <a href="/berita" class="btn btn-secondary">Cancel</a>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <a href="/berita" class="btn btn-sm btn-danger">Cancel</a>
+                        <button type="submit" class="btn btn-sm btn-success">Submit</button>
                     </div>
                 </div>
             </div>

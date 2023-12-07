@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div id="myCarousel" class="carousel slide mb-6" data-bs-ride="carousel">
+    <!-- <div id="myCarousel" class="carousel slide mb-6" data-bs-ride="carousel">
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class=""
                 aria-label="Slide 1"></button>
@@ -60,7 +60,29 @@
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
         </button>
+    </div> -->
+    <div id="carouselExample" class="carousel slide">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="..." class="d-block w-100" alt="...">
     </div>
+    <div class="carousel-item">
+      <img src="..." class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="..." class="d-block w-100" alt="...">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
     <div class="container mt-3">
         <div class="row">
             @foreach ($allBerita as $item)
@@ -73,15 +95,13 @@
                             <p class="card-text">{!! Str::words($item->isi, 30, '...') !!}</p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <a href="{{ route('detail', $item->id) }}"
-                                    class="btn btn-md btn-outline-secondary">View</a>
-                                <small class="text-body-secondary">{{ $item->user->name }} |
+                                    class="btn btn-md btn-outline-secondary">Go</a>
                                     <span class="fw-bold">{{ $item->kategori->nama_kategori }}</span></small>
                             </div>
                         </div>
                     </div>
                 </div>
             @endforeach
-
         </div>
     </div>
 @endsection

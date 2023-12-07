@@ -33,7 +33,6 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th scope="col">#</th>
                                 <th scope="col">Nama Kategori</th>
                                 <th scope="col">Aksi</th>
                             </tr>
@@ -41,15 +40,14 @@
                         <tbody>
                             @foreach ($allKategori as $item)
                             <tr>
-                                <th scope="row">1</th>
                                 <td>{{$item->nama_kategori}}</td>
                                 <td>
-                                    <a href="{{route('kategori.edit',$item->id)}}" class="btn btn-sm btn-success">edit</a>
-                                    <form class="d-inline" onsubmit="return confirm('sure to delete this data')"
+                                    <a href="{{route('kategori.edit',$item->id)}}" class="btn btn-sm btn-success">Edit</a>
+                                    <form class="d-inline" onsubmit="return confirm('Anda yakin ingin hapus Kategori?')"
                                             action="{{ route('kategori.delete', $item->id) }}" method="post">
                                             @csrf
                                             @method('DELETE')
-                                            <button class="btn btn-sm btn-danger mb-0">delete</button>
+                                            <button class="btn btn-sm btn-danger mb-0">Hapus</button>
                                         </form>
                                 </td>
                             </tr>
